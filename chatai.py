@@ -1,15 +1,17 @@
 import os
 from flask import Flask, render_template, request, jsonify
+from flask_cors import CORS  # Your new import
+
 from google import genai
 from dotenv import load_dotenv
 
 # This loads the secret variables from your .env file into memory
 load_dotenv()
+
 app = Flask(__name__)
+CORS(app)  # Add it here, right below the app initialization!
 
 # Initialize your Gemini client
-# Replace with your actual API key
-# ADD THESE LINES INSTEAD
 SECRET_KEY = os.getenv("GEMINI_API_KEY")
 client = genai.Client(api_key=SECRET_KEY)
 
